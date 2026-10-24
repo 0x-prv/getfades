@@ -1,0 +1,132 @@
+/* ==========================================================
+   GET FADES — franchise.css (v2: kinetic "Coming soon")
+   Tatlong malaking hilera ng text na gumagalaw (JS sa franchise.js).
+   Bilis: data-speed sa bawat .fr-row sa HTML (px bawat segundo).
+   Laki ng text: font-size ng .fr-group.
+   ========================================================== */
+
+.franchise {
+  position: relative;
+  overflow: hidden;
+}
+
+.franchise .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Malalaking hilera ---------- */
+.fr-stack {
+  margin-block: clamp(1.5rem, 4vw, 3.5rem);
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+.fr-row {
+  overflow: hidden;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(48px);
+  transition:
+    opacity 0.8s ease,
+    transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: calc(var(--i, 0) * 0.14s);
+}
+.franchise.is-in .fr-row {
+  opacity: 1;
+  transform: none;
+}
+
+.fr-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.fr-group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.3em;
+  padding-right: 0.3em;
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 17vw, 16rem);
+  line-height: 0.98;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+.fr-word { display: inline-block; }
+.fr-sep {
+  flex-shrink: 0;
+  width: auto;
+  height: 0.55em;
+  max-width: none;
+}
+
+/* Outline na hilera */
+.fr-row--outline .fr-word {
+  color: transparent;
+  -webkit-text-stroke: clamp(1px, 0.18vw, 3px) var(--color-white);
+}
+/* Malabo na hilera */
+.fr-row--dim .fr-word { color: rgba(255, 255, 255, 0.28); }
+
+/* ---------- Ilalim: badge, text, button ---------- */
+.fr-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.fr-foot__copy { display: grid; gap: 1.25rem; justify-items: start; }
+
+.franchise__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--color-white);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.franchise__badge::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-white);
+  animation: franchise-pulse 1.8s ease-in-out infinite;
+}
+@keyframes franchise-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+
+.franchise__text {
+  max-width: 44ch;
+  font-size: var(--fs-lead);
+  line-height: 1.5;
+  color: var(--color-gray-300);
+}
+
+@media (max-width: 600px) {
+  .fr-foot { align-items: stretch; }
+  .fr-foot .btn { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fr-row { opacity: 1; transform: none; transition: none; }
+  .fr-stack { transform: none !important; }
+  .franchise__badge::before { animation: none; }
+}

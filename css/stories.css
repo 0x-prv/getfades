@@ -1,0 +1,189 @@
+/* ==========================================================
+   GET FADES — stories.css
+   Instagram Stories-style na pagpili ng gupit (nasa Gallery).
+   Hindi ginagalaw ang photo marquee at video marquee.
+   ========================================================== */
+
+/* ---------- Hilera ng bilog ---------- */
+.stories { margin-top: clamp(0.5rem, 2vw, 1.5rem); }
+.stories__hint {
+  margin-bottom: 1.25rem;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gray-300);
+}
+.stories__list {
+  display: flex;
+  gap: clamp(1rem, 3vw, 2rem);
+  overflow-x: auto;
+  padding-block: 0.5rem;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.stories__list::-webkit-scrollbar { display: none; }
+
+.stories__item {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: clamp(84px, 11vw, 120px);
+}
+.stories__ring {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  min-height: 0;
+  overflow: hidden;
+  padding: 4px;
+  border: 2px solid var(--color-white);
+  border-radius: 50%;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+.stories__item.is-seen .stories__ring { border-color: var(--color-gray-600); }
+.stories__ring img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 50%;
+  background: var(--color-gray-900);
+}
+.stories__name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.3;
+}
+@media (hover: hover) {
+  .stories__item:hover .stories__ring { transform: scale(1.06); }
+}
+
+/* ---------- Fullscreen viewer ---------- */
+.story {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 10, 10, 0.97);
+  color: var(--color-white);
+  touch-action: pan-x;
+}
+.story__frame {
+  position: relative;
+  width: min(100vw, calc(100svh * 9 / 16));
+  height: 100svh;
+  max-height: 100svh;
+  background: var(--color-black);
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+}
+@media (min-width: 700px) {
+  .story__frame { height: min(100svh, 880px); width: min(92vw, calc(min(100svh, 880px) * 9 / 16)); }
+}
+.story__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+.story__shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom, rgba(10, 10, 10, 0.75) 0%, rgba(10, 10, 10, 0) 22%),
+    linear-gradient(to top, rgba(10, 10, 10, 0.55) 0%, rgba(10, 10, 10, 0) 18%);
+}
+
+.story__bars {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  right: 0.75rem;
+  z-index: 3;
+  display: flex;
+  gap: 4px;
+}
+.story__bar {
+  flex: 1;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+}
+.story__bar-fill {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: var(--color-white);
+}
+
+.story__head {
+  position: absolute;
+  top: 1.5rem;
+  left: 0.75rem;
+  right: 0.75rem;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  pointer-events: none;
+}
+.story__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.story__count {
+  margin-top: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-gray-300);
+}
+.story__close {
+  pointer-events: auto;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  font-size: 2.25rem;
+  line-height: 1;
+  color: var(--color-white);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(10, 10, 10, 0.5);
+}
+
+/* Tap zones: kaliwa = balik, kanan = susunod (hawak = pause) */
+.story__tap {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  cursor: pointer;
+}
+.story__cta {
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: 1rem;
+  z-index: 3;
+  min-height: 48px;
+}

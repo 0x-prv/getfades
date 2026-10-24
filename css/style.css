@@ -1,0 +1,1185 @@
+/* ==========================================================
+   GET FADES — style.css
+   Layout, typography, colors, responsive.
+   (Transitions, marquee, hover: nasa animations.css)
+   ========================================================== */
+
+/* ---------- Tokens ---------- */
+:root {
+  --color-black: #0A0A0A;
+  --color-white: #FFFFFF;
+  --color-gray-100: #F5F5F5;
+  --color-gray-300: #D1D1D1;
+  --color-gray-600: #777777;
+  --color-gray-900: #171717;
+
+  --font-display: "Anton", "Arial Narrow", Impact, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+
+  --fs-hero: clamp(2.25rem, min(5vw, 10svh), 4.75rem);
+  --fs-title: clamp(2.5rem, 7vw, 6rem);
+  --fs-lead: clamp(1.15rem, 2vw, 1.5rem);
+  --fs-body: clamp(1rem, 1.1vw, 1.0625rem);
+  --fs-small: 0.875rem;
+
+  --space-section: clamp(5rem, 11vw, 10rem);
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --max-width: 1360px;
+  --nav-height: 76px;
+}
+
+/* ---------- Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-height);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.65;
+  color: var(--color-black);
+  background: var(--color-white);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body.is-locked { overflow: hidden; }
+
+img, video, svg { display: block; max-width: 100%; }
+img, video { height: auto; }
+
+h1, h2, h3, h4, p, ul, ol, figure { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+[hidden] { display: none !important; }
+
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 1000;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-white);
+  color: var(--color-black);
+  font-weight: 600;
+}
+.skip-link:focus { top: 1rem; }
+
+/* ---------- Layout helpers ---------- */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section { padding-block: var(--space-section); }
+.section--light { background: var(--color-gray-100); color: var(--color-black); }
+.section--dark { background: var(--color-black); color: var(--color-white); }
+
+.eyebrow {
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  color: var(--color-gray-600);
+}
+.section--dark .eyebrow { color: var(--color-gray-300); }
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-title);
+  line-height: 0.95;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+}
+
+.section-head { margin-bottom: clamp(2.5rem, 6vw, 5rem); }
+.section-lead {
+  margin-top: 1.5rem;
+  max-width: 34ch;
+  font-size: var(--fs-lead);
+  color: var(--color-gray-300);
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  min-height: 52px;
+  padding: 0.9rem 1.75rem;
+  border: 1px solid transparent;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  text-align: center;
+  white-space: nowrap;
+}
+.btn--light { background: var(--color-white); color: var(--color-black); border-color: var(--color-white); }
+.btn--dark { background: var(--color-black); color: var(--color-white); border-color: var(--color-black); }
+.btn--outline { background: transparent; color: var(--color-white); border-color: var(--color-white); }
+.btn__hint {
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: none;
+  opacity: 0.7;
+}
+
+/* ---------- Navigation ----------
+   Transparent sa taas ng page. Nagiging solid black pag nag-scroll
+   (class na nav--solid, nilalagay ng maliit na script sa index.html).
+   Naka-fixed sa taas habang nag-scroll. */
+.nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  height: var(--nav-height);
+  color: var(--color-white);
+  background: transparent;
+  border-bottom: 1px solid transparent;
+}
+.nav.nav--solid {
+  background: var(--color-black);
+  border-bottom-color: var(--color-gray-900);
+}
+/* Kung hindi gumana ang JS, solid black pa rin para mabasa */
+.no-js .nav {
+  background: var(--color-black);
+  border-bottom-color: var(--color-gray-900);
+}
+
+.nav__inner {
+  max-width: var(--max-width);
+  height: 100%;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav__brand {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+
+.nav__brand { display: flex; align-items: center; }
+.nav__logo { height: 44px; width: auto; max-width: none; }
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.25rem, 2.5vw, 2.5rem);
+}
+
+.nav__link {
+  position: relative;
+  font-size: var(--fs-small);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.nav__cta { min-height: 44px; padding: 0.65rem 1.25rem; }
+
+.nav__toggle {
+  position: relative;
+  z-index: 2;
+  display: none;
+  width: 48px;
+  height: 48px;
+  margin-right: -10px;
+}
+.nav__toggle-bar {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  height: 2px;
+  background: currentColor;
+}
+.nav__toggle-bar:nth-child(1) { top: 20px; }
+.nav__toggle-bar:nth-child(2) { top: 28px; }
+
+/* ==========================================================
+   HERO (final version)
+   Full screen. Video ang background (nagsisimula sa ilalim ng nav).
+   Headline, sub text, at links: kaliwang ibaba, nakahanay sa
+   kaliwang gilid ng logo sa nav.
+   Sound button: kanang ibaba.
+
+   Mga pwedeng baguhin:
+   - Laki ng headline: --fs-hero sa :root
+   - Dilim sa kaliwa: ang 0.82 sa .hero__overlay
+   - Taas ng text mula sa ilalim: padding-bottom ng .hero__content
+   ========================================================== */
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-top: var(--nav-height);
+  background: var(--color-black);
+  color: var(--color-white);
+  overflow: hidden;
+}
+
+.hero__media {
+  position: absolute;
+  inset: var(--nav-height) 0 0 0;
+  z-index: 0;
+  background: var(--color-black);
+}
+.hero__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 0%;
+  /* Lumalabo ang itaas na gilid papunta sa itim ng nav area */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 6%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 6%);
+}
+
+/* Madilim sa kaliwa at ilalim para mabasa ang text, malinaw ang video sa kanan */
+.hero__overlay {
+  display: block;
+  position: absolute;
+  inset: var(--nav-height) 0 0 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      to right,
+      rgba(10, 10, 10, 0.82) 0%,
+      rgba(10, 10, 10, 0.55) 32%,
+      rgba(10, 10, 10, 0) 68%
+    ),
+    linear-gradient(
+      to top,
+      rgba(10, 10, 10, 0.7) 0%,
+      rgba(10, 10, 10, 0) 45%
+    );
+}
+
+/* Tinanggal na sa HTML; naka-hide para safe kung may natira */
+.hero__eyebrow,
+.hero__scroll { display: none; }
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+  text-align: left;
+  /* Nasa kaliwang gilid ng screen (hindi na naka-center sa container) */
+  max-width: none;
+  margin-inline: 0;
+  padding-block: 2rem clamp(2.5rem, 6vw, 5rem);
+}
+/* Maikling puting linya sa ibabaw ng headline */
+.hero__content::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: var(--color-white);
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-hero);
+  line-height: 0.92;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+.line { display: block; overflow: hidden; padding-block: 0.04em; }
+.line__inner { display: block; }
+
+.hero__sub {
+  max-width: 40ch;
+  font-size: clamp(0.95rem, 1.1vw, 1.0625rem);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 2.25rem;
+  margin-top: 0.75rem;
+}
+
+/* Pangalawang link: text lang, may underline na nag-a-animate sa hover */
+.hero__link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding-block: 0.5rem;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+  background-position: 0 100%;
+  transition: background-size 0.35s ease;
+}
+@media (hover: hover) {
+  .hero__link:hover {
+    background-size: 0 1px;
+    background-position: 100% 100%;
+  }
+}
+
+/* ---------- Sound toggle: naka-fixed sa kanang ibaba ng screen,
+   kaya nakikita at nagagamit kahit saan sa website ---------- */
+.hero__sound {
+  position: fixed;
+  right: var(--gutter);
+  bottom: 1.5rem;
+  z-index: 90;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 44px;
+  padding: 0.6rem 1rem;
+  background: rgba(10, 10, 10, 0.85);
+  color: var(--color-white);
+  border: 1px solid var(--color-white);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1;
+  transition: background-color 0.2s linear, color 0.2s linear;
+}
+.hero__sound-icon { flex-shrink: 0; }
+.hero__sound-waves { display: none; }
+.hero__sound.is-on .hero__sound-waves { display: inline; }
+.hero__sound.is-on .hero__sound-x { display: none; }
+@media (hover: hover) {
+  .hero__sound:hover { background: var(--color-white); color: var(--color-black); }
+}
+
+/* ---------- Marquee (layout; motion nasa animations.css) ---------- */
+.marquee {
+  background: var(--color-white);
+  color: var(--color-black);
+  overflow: hidden;
+  border-block: 1px solid var(--color-black);
+}
+.marquee__track { display: flex; width: max-content; }
+.marquee__logo {
+  height: clamp(1.75rem, 3.5vw, 2.5rem);
+  width: auto;
+  max-width: none;
+  flex-shrink: 0;
+}
+.marquee__group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.1rem 1rem 1.1rem 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ---------- About ---------- */
+.about__grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: clamp(2rem, 4vw, 3rem) var(--gutter);
+  align-items: start;
+}
+.about__heading { grid-column: 1 / span 7; }
+.about__body {
+  grid-column: 8 / span 5;
+  display: grid;
+  gap: 1.25rem;
+  padding-top: 0.5rem;
+}
+.about__lead {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  line-height: 1;
+  text-transform: uppercase;
+}
+.about__body p { max-width: 52ch; color: #333; }
+.about__figure {
+  grid-column: 2 / span 7;
+  aspect-ratio: 16 / 10;
+  margin-top: clamp(1rem, 4vw, 3rem);
+  background: var(--color-gray-300);
+  overflow: hidden;
+}
+.about__figure img { width: 100%; height: 100%; object-fit: cover; }
+
+/* About v2: landscape banner, edge to edge */
+.about__banner {
+  width: 100%;
+  aspect-ratio: 21 / 9;
+  margin-top: clamp(2.5rem, 6vw, 5rem);
+  background: var(--color-black);
+  overflow: hidden;
+}
+.about__banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ---------- Services ---------- */
+.services__group + .services__group { margin-top: clamp(3rem, 6vw, 5rem); }
+.services__group-title {
+  margin-bottom: 1rem;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gray-600);
+}
+
+.price-list { border-top: 1px solid var(--color-gray-600); }
+.price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-block: clamp(1.5rem, 3vw, 2.5rem);
+  border-bottom: 1px solid var(--color-gray-600);
+}
+.price-row__name {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1;
+  text-transform: uppercase;
+}
+.price-row__desc {
+  margin-top: 0.6rem;
+  max-width: 44ch;
+  color: var(--color-gray-300);
+}
+.price-row__price {
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 7vw, 6rem);
+  line-height: 1;
+}
+.price-list--small .price-row__name { font-size: clamp(1.5rem, 3.2vw, 2.5rem); }
+.price-list--small .price-row__price { font-size: clamp(1.75rem, 4vw, 3rem); }
+
+.notice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-top: clamp(3rem, 6vw, 5rem);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border: 1px solid var(--color-white);
+}
+.notice__text { max-width: 52ch; font-size: var(--fs-lead); line-height: 1.4; }
+
+/* ---------- Products (walang presyo) ---------- */
+.products {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2.5vw, 2rem);
+}
+.product__photo {
+  aspect-ratio: 3 / 4;
+  background: var(--color-gray-900);
+  overflow: hidden;
+}
+.product__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+@media (hover: hover) {
+  .product:hover .product__photo img { transform: scale(1.04); }
+}
+.product__name {
+  margin-top: 1rem;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  line-height: 1;
+  text-transform: uppercase;
+}
+.product__desc {
+  margin-top: 0.5rem;
+  max-width: 36ch;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--color-gray-300);
+}
+.products-note { margin-top: 1.5rem; color: var(--color-gray-300); }
+
+/* ---------- Barbers (renderer: main.js) ---------- */
+.barbers { --barbers-gap: clamp(0.75rem, 1.5vw, 1.25rem); }
+
+.barbers__grid {
+  display: flex;
+  gap: var(--barbers-gap);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  cursor: grab;
+  user-select: none;
+}
+.barbers__grid::-webkit-scrollbar { display: none; }
+.barbers__grid.is-dragging { cursor: grabbing; scroll-snap-type: none; scroll-behavior: auto; }
+
+.barber {
+  flex: 0 0 calc((100% - 3 * var(--barbers-gap)) / 4);
+  scroll-snap-align: start;
+}
+
+.barber__photo {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  background: var(--color-gray-900);
+  overflow: hidden;
+  transition: transform 0.4s ease;
+}
+.barber__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1);
+  transition: filter 0.5s ease, transform 0.6s ease;
+}
+.barber__shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(10, 10, 10, 0.9) 0%, rgba(10, 10, 10, 0) 55%);
+}
+.barber__num {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.25rem 0.6rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  color: var(--color-white);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+.barber__info {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  color: var(--color-white);
+}
+.barber__name {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 3vw, 2.75rem);
+  line-height: 1;
+  text-transform: uppercase;
+}
+.barber__specialty {
+  margin-top: 0.4rem;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-gray-300);
+}
+.barber__bio { margin-top: 0.6rem; font-size: 0.95rem; line-height: 1.5; color: var(--color-gray-300); }
+
+@media (hover: hover) {
+  .barber:hover .barber__photo { transform: translateY(-6px); }
+  .barber:hover .barber__photo img { filter: grayscale(0); transform: scale(1.06); }
+}
+
+/* Slider controls */
+.barbers-slider__controls {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+.barbers-slider__progress {
+  position: relative;
+  flex: 1;
+  height: 2px;
+  background: var(--color-gray-300);
+  overflow: hidden;
+}
+.barbers-slider__bar {
+  display: block;
+  width: 25%;
+  height: 100%;
+  background: var(--color-black);
+  transition: transform 0.15s linear;
+}
+.barbers-slider__arrows { display: flex; gap: 0.5rem; }
+.barbers-slider__arrow {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--color-black);
+  font-size: 1.75rem;
+  line-height: 1;
+  transition: background-color 0.2s linear, color 0.2s linear, opacity 0.2s linear;
+}
+.barbers-slider__arrow:disabled { opacity: 0.3; cursor: default; }
+@media (hover: hover) {
+  .barbers-slider__arrow:not(:disabled):hover { background: var(--color-black); color: var(--color-white); }
+}
+
+/* Responsive: tablet at mobile (may peek ang susunod na card) */
+@media (max-width: 1024px) {
+  .barber { flex-basis: calc((100% - 2 * var(--barbers-gap)) / 2.6); }
+}
+@media (max-width: 860px) {
+  .barber { flex-basis: calc((100% - var(--barbers-gap)) / 1.7); }
+}
+@media (max-width: 600px) {
+  .barber { flex-basis: 78%; }
+}
+
+/* ---------- Achievements (nasa loob ng Barbers) ---------- */
+.achievements {
+  margin-top: clamp(3rem, 7vw, 6rem);
+  padding-top: clamp(2rem, 4vw, 3rem);
+  border-top: 1px solid var(--color-black);
+}
+.achievements__title {
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  line-height: 1;
+  text-transform: uppercase;
+}
+.achievements__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1rem, 2.5vw, 2rem);
+  align-items: start;
+}
+/* Achievements v2: pareho ang laki ng dalawang photo */
+.achievements__item {
+  aspect-ratio: 4 / 3;
+  background: var(--color-gray-300);
+  overflow: hidden;
+}
+.achievements__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+}
+
+/* ---------- Gallery (renderer: main.js) ---------- */
+.gallery__grid { column-count: 3; column-gap: 1rem; }
+.gallery__item {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 0 0 1rem;
+  break-inside: avoid;
+  background: var(--color-gray-900);
+  overflow: hidden;
+  cursor: zoom-in;
+}
+.gallery__item img,
+.gallery__item video { width: 100%; height: auto; }
+
+/* ---------- Gallery marquees ----------
+   Photo marquee: auto-scroll na pwedeng i-drag/i-swipe (JS sa index.html).
+   Video marquee: auto-scroll lang (CSS).
+   Bilis: mas malaki ang seconds = mas mabagal. */
+.gallery {
+  --gallery-speed: 150s;
+  --video-speed: 60s;
+  --gallery-gap: clamp(0.75rem, 1.5vw, 1.25rem);
+}
+
+/* Photo marquee */
+.gallery-marquee {
+  margin-top: clamp(0.5rem, 2vw, 1.5rem);
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.gallery-marquee__track { display: flex; width: max-content; }
+.gallery-marquee__group {
+  display: flex;
+  flex-shrink: 0;
+  gap: var(--gallery-gap);
+  padding-right: var(--gallery-gap);
+}
+.gallery-marquee__item {
+  flex: 0 0 auto;
+  width: clamp(190px, 22vw, 320px);
+  aspect-ratio: 4 / 5;
+  background: var(--color-gray-900);
+  overflow: hidden;
+}
+.gallery-marquee__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* Video marquee (portrait 9:16, auto lang) */
+.video-marquee {
+  margin-top: var(--gallery-gap);
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.video-marquee__track { display: flex; width: max-content; }
+.video-marquee__group {
+  display: flex;
+  flex-shrink: 0;
+  gap: var(--gallery-gap);
+  padding-right: var(--gallery-gap);
+}
+.video-marquee__item {
+  flex: 0 0 auto;
+  width: clamp(150px, 16vw, 230px);
+  aspect-ratio: 9 / 16;
+  background: var(--color-gray-900);
+  overflow: hidden;
+}
+.video-marquee__item video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* Gumagalaw lang pagkatapos makopya ng script ang mga video */
+.video-marquee.is-ready .video-marquee__track {
+  animation: video-scroll var(--video-speed) linear infinite;
+  will-change: transform;
+}
+@keyframes video-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (hover: hover) {
+  .video-marquee:hover .video-marquee__track { animation-play-state: paused; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .video-marquee { overflow-x: auto; }
+  .video-marquee.is-ready .video-marquee__track { animation: none; }
+}
+
+/* ---------- Amenities slider (swipeable) ---------- */
+.amenities__slider { margin-bottom: clamp(2rem, 5vw, 3.5rem); }
+.amenities__photos {
+  display: flex;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.amenities__photos::-webkit-scrollbar { display: none; }
+.amenities__photo {
+  flex: 0 0 72%;
+  aspect-ratio: 16 / 10;
+  background: var(--color-gray-300);
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+.amenities__photo img { width: 100%; height: 100%; object-fit: cover; }
+
+.amenities__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+.amenities__count {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  letter-spacing: 0.06em;
+}
+.amenities__arrows { display: flex; gap: 0.5rem; }
+.amenities__arrow {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--color-black);
+  font-size: 1.75rem;
+  line-height: 1;
+  transition: background-color 0.2s linear, color 0.2s linear, opacity 0.2s linear;
+}
+.amenities__arrow:disabled { opacity: 0.3; cursor: default; }
+@media (hover: hover) {
+  .amenities__arrow:not(:disabled):hover { background: var(--color-black); color: var(--color-white); }
+}
+
+/* ---------- Amenities ---------- */
+.amenities__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--color-black);
+}
+.amenity {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1rem, 2vw, 2rem) clamp(1.5rem, 3vw, 2.5rem) 0;
+  border-bottom: 1px solid var(--color-black);
+}
+.amenity + .amenity {
+  padding-left: clamp(1rem, 2vw, 2rem);
+  border-left: 1px solid var(--color-black);
+}
+.amenity__label {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.6vw, 2rem);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+/* ---------- Reviews ---------- */
+.reviews__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gutter);
+  align-items: end;
+}
+.reviews__summary { display: grid; gap: 1rem; justify-items: start; }
+.reviews__rating { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.25rem); }
+.reviews__score { font-size: clamp(5rem, 12vw, 10rem); line-height: 0.9; }
+.reviews__meta { color: var(--color-gray-300); margin-bottom: 0.5rem; }
+
+/* ---------- Hours & Location ---------- */
+.contact__grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(2.5rem, 6vw, 6rem);
+  align-items: start;
+}
+.contact__intro { display: grid; gap: 2rem; justify-items: start; }
+.contact__intro .eyebrow { margin-bottom: 0; }
+.contact__label {
+  margin-bottom: 0.75rem;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gray-600);
+}
+.contact__phones { display: grid; gap: 0.25rem; }
+.contact__phone {
+  display: inline-block;
+  width: fit-content;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+}
+
+.hours-list { border-top: 1px solid var(--color-black); }
+.hours-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.9rem;
+  border-bottom: 1px solid var(--color-gray-300);
+  font-weight: 500;
+}
+.hours-row span:last-child { text-align: right; }
+.contact__note { margin-top: 1.25rem; font-size: var(--fs-small); color: var(--color-gray-600); max-width: 46ch; }
+
+.contact__address address {
+  font-style: normal;
+  font-size: var(--fs-lead);
+  line-height: 1.4;
+  max-width: 28ch;
+}
+
+/* Map: grayscale para tugma sa black and white na design */
+.contact__map {
+  margin-top: clamp(2.5rem, 6vw, 5rem);
+  aspect-ratio: 21 / 9;
+  border: 1px solid var(--color-black);
+  background: var(--color-gray-300);
+  overflow: hidden;
+}
+.contact__map iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  filter: grayscale(1) contrast(1.05);
+}
+
+/* ---------- Booking CTA ---------- */
+.booking__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gutter);
+  align-items: start;
+}
+.booking__body { display: grid; gap: 1.5rem; }
+.booking__steps { display: grid; gap: 1rem; counter-reset: step; }
+.booking__steps li {
+  position: relative;
+  padding-left: 3rem;
+  counter-increment: step;
+  font-size: var(--fs-lead);
+  line-height: 1.4;
+}
+.booking__steps li::before {
+  content: counter(step, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0.1em;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--color-gray-600);
+}
+.booking__examples { color: var(--color-gray-300); }
+.booking__walkin { font-weight: 600; letter-spacing: 0.04em; }
+.booking__actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 0.5rem; }
+
+/* ---------- Footer ---------- */
+.footer {
+  padding-top: clamp(3.5rem, 7vw, 6rem);
+  background: var(--color-black);
+  color: var(--color-white);
+  border-top: 1px solid var(--color-gray-900);
+}
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.5fr repeat(4, 1fr);
+  gap: 2.5rem var(--gutter);
+}
+.footer__logo { font-family: var(--font-display); font-size: 2.5rem; line-height: 1; letter-spacing: 0.04em; }
+.footer__logo-img { height: 72px; width: auto; }
+
+.footer__tag { margin-top: 0.75rem; color: var(--color-gray-300); }
+.footer__col { display: grid; gap: 0.5rem; align-content: start; }
+.footer__col a, .footer__col p { color: var(--color-gray-300); font-size: 0.95rem; line-height: 1.5; }
+.footer__col p + p { margin-top: 0.5rem; }
+.footer__heading {
+  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-white);
+}
+.footer__bottom {
+  margin-top: clamp(3rem, 6vw, 5rem);
+  padding-block: 1.5rem;
+  border-top: 1px solid var(--color-gray-900);
+  font-size: var(--fs-small);
+  color: var(--color-gray-600);
+}
+
+/* ---------- Lightbox ---------- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1rem;
+  background: rgba(10, 10, 10, 0.96);
+}
+.lightbox__stage { max-width: min(92vw, 1200px); max-height: 82vh; }
+.lightbox__stage img,
+.lightbox__stage video { max-width: 100%; max-height: 82vh; margin-inline: auto; object-fit: contain; }
+.lightbox__btn {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  color: var(--color-white);
+  font-size: 2.5rem;
+  line-height: 1;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+.lightbox__close { top: 1rem; right: 1rem; }
+.lightbox__prev { left: 1rem; top: 50%; transform: translateY(-50%); }
+.lightbox__next { right: 1rem; top: 50%; transform: translateY(-50%); }
+
+/* ---------- Temporary placeholders (alisin pag may actual photos na) ---------- */
+[data-placeholder] { position: relative; }
+[data-placeholder]::after {
+  content: "TEMP PLACEHOLDER — replace with real GET FADES photo";
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  padding: 0.35rem 0.6rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-gray-300);
+  border: 1px dashed var(--color-gray-600);
+}
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .about__heading { grid-column: 1 / -1; }
+  .about__body { grid-column: 1 / span 9; }
+  .about__figure { grid-column: 1 / -1; }
+
+  .gallery__grid { column-count: 2; }
+  .footer__grid { grid-template-columns: repeat(3, 1fr); }
+  .footer__brand { grid-column: 1 / -1; }
+}
+
+/* Mobile nav + stacked layouts */
+@media (max-width: 860px) {
+  .nav__toggle { display: block; }
+
+  .nav__links {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: calc(var(--nav-height) + 1rem) var(--gutter) 2rem;
+    background: var(--color-black);
+    visibility: hidden;
+    opacity: 0;
+  }
+  .nav.is-open .nav__links { visibility: visible; opacity: 1; }
+
+  .nav__link {
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 10vw, 3.5rem);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    line-height: 1;
+  }
+  .nav__cta { margin-top: 1rem; min-height: 52px; padding: 0.9rem 1.75rem; }
+
+  /* Hero mobile: buo ang video sa taas (walang crop),
+     text sa ilalim, kaliwa, full screen pa rin */
+  .hero { justify-content: flex-start; }
+  .hero__media {
+    position: relative;
+    inset: auto;
+    flex: 0 0 auto;
+  }
+  .hero__image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 8%, #000 65%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0, #000 8%, #000 65%, transparent 100%);
+  }
+  .hero__overlay { display: none; }
+  .hero__content {
+    margin-top: auto;
+    gap: 1.25rem;
+    padding-block: 1rem 2.5rem;
+  }
+  .hero__title { font-size: clamp(2.75rem, 14vw, 4.5rem); }
+  .hero__sub { font-size: 1.125rem; }
+
+  .hero__sound { bottom: 1rem; }
+
+  .about__body { grid-column: 1 / -1; }
+  .about__banner { aspect-ratio: 16 / 10; }
+  .achievements__grid { grid-template-columns: 1fr; }
+  .amenities__photo { flex-basis: 88%; aspect-ratio: 4 / 3; }
+  .contact__map { aspect-ratio: 4 / 3; }
+  .contact__grid,
+  .reviews__inner,
+  .booking__inner { grid-template-columns: 1fr; }
+  .reviews__inner { align-items: start; }
+
+  /* Products: swipeable sa mobile */
+  .products {
+    display: flex;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .products::-webkit-scrollbar { display: none; }
+  .product { flex: 0 0 72%; scroll-snap-align: start; }
+
+  .notice { flex-direction: column; align-items: flex-start; }
+  .amenities__list { grid-template-columns: 1fr; }
+  .amenity + .amenity { padding-left: 0; border-left: 0; }
+}
+
+/* Small phones */
+@media (max-width: 600px) {
+  :root { --nav-height: 68px; }
+
+  .hero__actions { flex-direction: column; align-items: stretch; align-self: stretch; gap: 0.5rem; }
+  .hero__actions .btn { white-space: normal; }
+  .hero__link { align-self: flex-start; }
+  .btn { white-space: normal; }
+
+  .price-row { align-items: flex-start; }
+  .gallery__grid { column-count: 1; }
+  .footer__grid { grid-template-columns: 1fr 1fr; }
+  .lightbox__prev { left: 0.5rem; }
+  .lightbox__next { right: 0.5rem; }
+}

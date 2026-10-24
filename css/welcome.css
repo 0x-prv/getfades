@@ -1,0 +1,142 @@
+/* ==========================================================
+   GET FADES — welcome.css
+   3D barber pole welcome screen (overlay bago ang main site).
+   Logic: js/welcome.js
+   ========================================================== */
+
+.welcome {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(ellipse at 50% 42%, #1d1d1d 0%, #0A0A0A 68%);
+  color: #fff;
+  transition: opacity 0.9s ease, visibility 0.9s ease;
+}
+
+.welcome.is-leaving {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Walang JS, o napanood na ngayong session: itago agad */
+.no-js .welcome,
+.welcome-seen .welcome { display: none; }
+
+.welcome__stage {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  margin-bottom: clamp(1.25rem, 5vh, 2.5rem); /* espasyo sa pagitan ng pole at text */
+}
+
+.welcome__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.welcome__content {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0 1.25rem clamp(1.75rem, 6vh, 3.5rem);
+  text-align: center;
+}
+
+.welcome__eyebrow {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #D1D1D1;
+}
+
+.welcome__title {
+  font-family: "Anton", "Arial Narrow", Impact, sans-serif;
+  font-weight: 400;
+  font-size: clamp(2.25rem, 10vw, 5.5rem);
+  line-height: 0.95;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.welcome__tag {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.welcome__enter,
+.welcome__plug { margin-top: 0.75rem; min-width: 200px; }
+
+/* Pasok na animation ng text */
+.welcome__content > * {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: welcome-rise 0.8s ease forwards;
+}
+.welcome__content > *:nth-child(1) { animation-delay: 0.4s; }
+.welcome__content > *:nth-child(2) { animation-delay: 0.55s; }
+.welcome__content > *:nth-child(3) { animation-delay: 0.7s; }
+.welcome__content > *:nth-child(4) { animation-delay: 0.9s; }
+
+/* Enter site: lalabas pagkatapos umilaw ang pole */
+.welcome__content > .welcome__enter.is-shown {
+  animation: welcome-rise 0.6s ease forwards;
+  animation-delay: 0s;
+}
+
+/* Plug / Unplug button (nasa ilalim ng Enter site) */
+.welcome__content > *:nth-child(5) { animation-delay: 0.9s; }
+.welcome__plug { position: relative; }
+.welcome__plug:disabled { filter: brightness(0.6); cursor: default; }
+
+/* Pumipintig habang naghihintay masaksak, para mapansin */
+.welcome__plug.is-pulsing::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  pointer-events: none;
+  animation: welcome-ring 1.8s ease-out 1.8s infinite;
+}
+
+@keyframes welcome-rise {
+  to { opacity: 1; transform: none; }
+}
+@keyframes welcome-ring {
+  from { transform: scale(1); opacity: 0.8; }
+  to   { transform: scale(1.15, 1.45); opacity: 0; }
+}
+
+/* Desktop / tablet na malapad: nasa gitna ng screen ang text,
+   at nasa kanan niya ang pole (halos kasing-taas ng text).
+   Para ipagpalit ang pwesto (pole sa kaliwa), palitan ang row-reverse ng row.
+   Para palakihin/paliitin ang pole: baguhin ang width at height ng .welcome__stage. */
+@media (min-width: 861px) {
+  .welcome {
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1.5rem, 4vw, 4rem);
+  }
+  .welcome__stage {
+    flex: 0 0 auto;
+    width: clamp(280px, 24vw, 380px);
+    height: clamp(340px, 46vh, 480px);
+    margin-bottom: 0;
+  }
+  .welcome__content {
+    flex: 0 0 auto;
+    padding: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .welcome { display: none; }
+}

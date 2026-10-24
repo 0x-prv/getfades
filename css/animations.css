@@ -1,0 +1,191 @@
+/* ==========================================================
+   GET FADES — animations.css
+   CSS transitions, marquee, hover effects, reduced-motion.
+   Walang initial "hidden" states dito: GSAP (animations.js)
+   ang magse-set nun, para visible pa rin ang content kung
+   pumalya ang JS o ang CDN.
+   ========================================================== */
+
+:root {
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --t-fast: 0.2s;
+  --t-med: 0.4s;
+  --t-slow: 0.8s;
+}
+
+/* ---------- Navigation ---------- */
+.nav {
+  transition: background-color var(--t-med) var(--ease-out),
+              border-color var(--t-med) var(--ease-out);
+}
+
+/* Line-reveal underline (desktop links lang, hindi ang CTA) */
+.nav__link:not(.nav__cta)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform var(--t-med) var(--ease-out);
+}
+.nav__link:not(.nav__cta):hover::after,
+.nav__link:not(.nav__cta):focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+/* Mobile burger -> X */
+.nav__toggle-bar {
+  transition: transform var(--t-med) var(--ease-out), top var(--t-med) var(--ease-out);
+}
+.nav.is-open .nav__toggle-bar:nth-child(1) { top: 24px; transform: rotate(45deg); }
+.nav.is-open .nav__toggle-bar:nth-child(2) { top: 24px; transform: rotate(-45deg); }
+
+/* Mobile menu panel */
+@media (max-width: 860px) {
+  .nav__links {
+    transition: opacity var(--t-med) var(--ease-out),
+                visibility 0s linear var(--t-med);
+  }
+  .nav.is-open .nav__links {
+    transition: opacity var(--t-med) var(--ease-out),
+                visibility 0s linear 0s;
+  }
+
+  .nav__link:not(.nav__cta)::after { display: none; }
+
+  .nav__links > * {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity var(--t-med) var(--ease-out),
+                transform var(--t-slow) var(--ease-out);
+  }
+  .nav.is-open .nav__links > * { opacity: 1; transform: none; }
+  .nav.is-open .nav__links > *:nth-child(1) { transition-delay: 0.08s; }
+  .nav.is-open .nav__links > *:nth-child(2) { transition-delay: 0.14s; }
+  .nav.is-open .nav__links > *:nth-child(3) { transition-delay: 0.20s; }
+  .nav.is-open .nav__links > *:nth-child(4) { transition-delay: 0.26s; }
+  .nav.is-open .nav__links > *:nth-child(5) { transition-delay: 0.32s; }
+  .nav.is-open .nav__links > *:nth-child(6) { transition-delay: 0.38s; }
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  transition: background-color var(--t-med) var(--ease-out),
+              color var(--t-med) var(--ease-out),
+              border-color var(--t-med) var(--ease-out),
+              transform var(--t-med) var(--ease-out);
+}
+.btn:active { transform: translateY(1px); }
+
+@media (hover: hover) {
+  .btn--light:hover   { background: transparent; color: var(--color-white); }
+  .btn--dark:hover    { background: transparent; color: var(--color-black); }
+  .btn--outline:hover { background: var(--color-white); color: var(--color-black); }
+}
+
+/* ---------- Hero scroll indicator ---------- */
+.hero__scroll-line::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-white);
+  transform: translateY(-100%);
+  animation: scroll-cue 2s var(--ease-in-out) infinite;
+}
+@keyframes scroll-cue {
+  0%        { transform: translateY(-100%); }
+  55%, 100% { transform: translateY(100%); }
+}
+
+/* ---------- Marquee ---------- */
+.marquee__track {
+  animation: marquee 28s linear infinite;
+  will-change: transform;
+}
+/* dalawang magkaparehong group, kaya -50% = seamless loop */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (hover: hover) {
+  .marquee:hover .marquee__track { animation-play-state: paused; }
+}
+
+/* ---------- Services ---------- */
+.price-row__info,
+.price-row__price {
+  transition: transform var(--t-med) var(--ease-out),
+              opacity var(--t-med) var(--ease-out);
+}
+.price-row { transition: border-color var(--t-med) var(--ease-out); }
+
+@media (hover: hover) {
+  .price-row:hover { border-bottom-color: var(--color-white); }
+  .price-row:hover .price-row__info { transform: translateX(14px); }
+}
+
+/* ---------- Gallery & barbers ---------- */
+.gallery__item img,
+.gallery__item video,
+.barber__photo img {
+  transition: transform 0.9s var(--ease-out), filter var(--t-med) var(--ease-out);
+}
+@media (hover: hover) {
+  .gallery__item:hover img,
+  .gallery__item:hover video { transform: scale(1.05); }
+  .barber__photo:hover img   { transform: scale(1.04); }
+}
+
+/* ---------- Amenities ---------- */
+.amenity__icon { transition: transform var(--t-med) var(--ease-out); }
+@media (hover: hover) {
+  .amenity:hover .amenity__icon { transform: translateY(-6px); }
+}
+
+/* ---------- Contact / footer links ---------- */
+.contact__phone,
+.footer__col a {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 0% 1px;
+  transition: background-size var(--t-med) var(--ease-out), color var(--t-fast) linear;
+}
+@media (hover: hover) {
+  .contact__phone:hover,
+  .footer__col a:hover { background-size: 100% 1px; }
+  .footer__col a:hover { color: var(--color-white); }
+}
+
+/* ---------- Lightbox ---------- */
+.lightbox:not([hidden]) { animation: fade-in var(--t-med) var(--ease-out); }
+.lightbox__btn { transition: background-color var(--t-fast) linear, color var(--t-fast) linear; }
+@media (hover: hover) {
+  .lightbox__btn:hover { background: var(--color-white); color: var(--color-black); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+  }
+
+  .marquee__track { animation: none; transform: none; }
+  .marquee { overflow-x: auto; }
+  .hero__scroll-line::after { animation: none; transform: none; opacity: 0.6; }
+}

@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GET FADES | Barbershop — Your Cut. Your Confidence.</title>
+  <meta name="description" content="GET FADES barbershop. Men's haircuts, premium haircuts, mustache trims and beard fades. Consultation with every customer. Walk-ins welcome. Appointments via Facebook.">
+  <meta name="theme-color" content="#0A0A0A">
+
+  <!-- Open Graph (idagdag ang og:image kapag may actual photo na) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="GET FADES | Your Cut. Your Confidence.">
+  <meta property="og:description" content="More than a haircut. A style that feels like you.">
+  <meta property="og:locale" content="en_PH">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/about-hero.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/welcome.css">
+  <link rel="stylesheet" href="css/franchise.css">
+<link rel="stylesheet" href="css/stories.css">
+<link rel="stylesheet" href="css/gallery-viewer.css">
+  <!-- Favicon: ilagay dito ang logo kapag meron na -->
+  <link rel="icon" href="public/images/shop/logo.png">
+
+  <!-- Para alam ng CSS kung gumagana ang JS -->
+  <script>document.documentElement.classList.replace("no-js", "js");try{if(sessionStorage.getItem("gf-welcome-seen")&&location.search.indexOf("welcome")<0)document.documentElement.classList.add("welcome-seen");}catch(e){}</script>
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BarberShop",
+    "name": "GET FADES",
+    "telephone": ["+639776039106", "+639274103417"],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "10245 Centennial 2A St",
+      "addressLocality": "Pasig",
+      "addressRegion": "Metro Manila",
+      "addressCountry": "PH"
+    },
+    "hasMap": "https://maps.app.goo.gl/tSoMAwWoEo4CYmX49?g_st=ic",
+    "sameAs": [
+      "https://www.facebook.com/share/1G1P8pDjtZ/?mibextid=wwXIfr",
+      "https://www.instagram.com/get.fades?xtok=d3JtN2FmM2tkcGE0"
+    ],
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Saturday", "Sunday"],
+        "opens": "08:00",
+        "closes": "21:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Friday",
+        "opens": "10:00",
+        "closes": "21:00"
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <!-- ===================== WELCOME (3D barber pole) ===================== -->
+  <div class="welcome" id="welcome" role="dialog" aria-label="Welcome to GET FADES">
+    <div class="welcome__stage" id="welcome-stage"></div>
+    <div class="welcome__content">
+      <p class="welcome__eyebrow">Welcome to</p>
+      <p class="welcome__title">GET FADES</p>
+      <p class="welcome__tag">Your cut. Your confidence.</p>
+      <button class="btn btn--light welcome__enter" id="welcome-enter" type="button">Enter site</button>
+    </div>
+  </div>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ===================== NAVIGATION ===================== -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#top" class="nav__brand" aria-label="GET FADES — back to top"><img src="public/images/shop/logo.png" alt="GET FADES" class="nav__logo"></a>
+
+      <nav class="nav__links" id="nav-menu" aria-label="Main navigation">
+        <a href="#about" class="nav__link">About</a>
+        <a href="#services" class="nav__link">Services</a>
+        <a href="#barbers" class="nav__link" data-requires="barbers" hidden>Barbers</a>
+        <a href="#gallery" class="nav__link">Gallery</a>
+                <a href="#franchise" class="nav__link">Franchise</a>
+        <a href="#contact" class="nav__link">Contact</a>
+        <a href="https://www.facebook.com/share/1G1P8pDjtZ/?mibextid=wwXIfr"
+           class="btn btn--light nav__cta" target="_blank" rel="noopener noreferrer">Book an Appointment</a>
+      </nav>
+
+      <button class="nav__toggle" id="nav-toggle" type="button"
+              aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+        <span class="nav__toggle-bar"></span>
+        <span class="nav__toggle-bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <!-- Hero video (original na kulay). Ang homepage.png ay poster habang naglo-load. -->
+      <div class="hero__media">
+        <video class="hero__image" id="hero-video"
+               src="public/images/shop/homepage.mp4"
+               poster="public/images/shop/homepage.png"
+               autoplay muted loop playsinline preload="auto"
+               aria-hidden="true"></video>
+      </div>
+      <div class="hero__overlay" aria-hidden="true"></div>
+
+      <!-- Headline, sub text, at links: kaliwang ibaba -->
+      <div class="hero__content container">
+        <h1 class="hero__title" id="hero-title">
+          <span class="line"><span class="line__inner">Your cut.</span></span>
+          <span class="line"><span class="line__inner">Your confidence.</span></span>
+        </h1>
+        <p class="hero__sub">More than a haircut. A style that feels like you.</p>
+
+        <div class="hero__actions">
+          <a href="#services" class="btn btn--light">Explore Haircuts</a>
+          <a href="https://www.facebook.com/share/1G1P8pDjtZ/?mibextid=wwXIfr"
+             class="hero__link" target="_blank" rel="noopener noreferrer">
+            Book an Appointment
+            <span class="btn__hint">via Facebook</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Sound on/off: naka-fixed, kaya gumagana kahit saan sa website -->
+      <button class="hero__sound" id="hero-sound" type="button"
+              aria-pressed="false" aria-label="Turn sound on">
+        <svg class="hero__sound-icon" viewBox="0 0 24 24" width="22" height="22" fill="none"
+             stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 9v6h4l5 4V5L8 9H4z"/>
+          <g class="hero__sound-waves"><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></g>
+          <g class="hero__sound-x"><path d="M16.5 9.5l5 5M21.5 9.5l-5 5"/></g>
+        </svg>
+        <span class="hero__sound-label">Sound off</span>
+      </button>
+    </section>
+
+    <!-- ===================== MARQUEE ===================== -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <div class="marquee__group">
+          <span>Fresh cuts</span><span><img src="public/images/shop/logo.png" alt="" class="marquee__logo"></span>
+          <span>Sharp details</span><span><img src="public/images/shop/logo.png" alt="" class="marquee__logo"></span>
+          <span>Real confidence</span><span><img src="public/images/shop/logo.png" alt="" class="marquee__logo"></span>
+          <span>GET FADES</span><span><img src="public/images/shop/logo.png" alt="" class="marquee__logo"></span>
+        </div>
+        <div class="marquee__group">
+          <span>Fresh cuts</span><span><img src="public/images/shop/logo.png" alt="" class="marquee__logo"></span>
+          <span>Sharp details</span><span><img src="public/images/shop/logo.png" alt="" class="marquee__logo"></span>
+          <span>Real confidence</span><span><img src="public/images/shop/logo.png" alt="" class="marquee__logo"></span>
+          <span>GET FADES</span><span><img src="public/images/shop/logo.png" alt="" class="marquee__logo"></span>
+        </div>
+      </div>
+    </div>
+
+<section class="section section--light about" id="about" aria-labelledby="about-title">
+  <figure class="about__banner">
+    <img src="public/images/shop/about.png"
+         alt="GET FADES barbershop storefront" loading="lazy" decoding="async">
+  </figure>
+
+  <div class="container about__grid">
+    <div class="about__heading">
+      <p class="eyebrow">About</p>
+      <h2 class="section-title" id="about-title">More than a haircut.</h2>
+    </div>
+    <div class="about__body">
+      <p>
+        Every great haircut starts with a conversation. We take the time to understand
+        your style and the look that gives you confidence, so every visit gets better
+        than the last.
+      </p>
+    </div>
+  </div>
+</section>
+
+    <!-- ===================== SERVICES ===================== -->
+    <section class="section section--dark services" id="services" aria-labelledby="services-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Services</p>
+          <h2 class="section-title" id="services-title" data-reveal>Our services</h2>
+          <p class="section-lead" data-reveal>Clean cuts. Sharp details. Confidence in every visit.</p>
+        </div>
+
+        <div class="services__group">
+          <h3 class="services__group-title">Haircuts</h3>
+          <ul class="price-list">
+            <li class="price-row" data-stagger>
+              <div class="price-row__info">
+                <h4 class="price-row__name">Men's Haircut</h4>
+                <p class="price-row__desc">A clean, tailored cut after a quick consultation.</p>
+              </div>
+              <p class="price-row__price" aria-label="200 pesos">₱200</p>
+            </li>
+            <li class="price-row" data-stagger>
+              <div class="price-row__info">
+                <h4 class="price-row__name">Premium Haircut</h4>
+                <p class="price-row__desc">Our premium cut, done with extra attention to detail.</p>
+              </div>
+              <p class="price-row__price" aria-label="250 pesos">₱250</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="services__group">
+          <h3 class="services__group-title">Other services</h3>
+          <ul class="price-list price-list--small">
+            <li class="price-row" data-stagger>
+              <div class="price-row__info">
+                <h4 class="price-row__name">Mustache Trim / Shave</h4>
+                <p class="price-row__desc">Neat and precise mustache grooming.</p>
+              </div>
+              <p class="price-row__price" aria-label="50 pesos">₱50</p>
+            </li>
+            <li class="price-row" data-stagger>
+              <div class="price-row__info">
+                <h4 class="price-row__name">Beard Fade / Shave</h4>
+                <p class="price-row__desc">A sharp beard fade or clean shave.</p>
+              </div>
+              <p class="price-row__price" aria-label="50 pesos">₱50</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="services__group">
+          <h3 class="services__group-title">Products we offer</h3>
+          <ul class="products">
+            <li class="product" data-stagger>
+              <figure class="product__photo">
+                <img src="public/images/products/product1.png"
+                     alt="Sevich Hair Volume Powder, Light Control" loading="lazy" decoding="async">
+              </figure>
+              <h4 class="product__name">Sevich Hair Volume Powder</h4>
+              <p class="product__desc">Light control texture powder. Dust it on for volume.</p>
+            </li>
+            <li class="product" data-stagger>
+              <figure class="product__photo">
+                <img src="public/images/products/product2.png"
+                     alt="Dashine Samson's Classics pomade in its box" loading="lazy" decoding="async">
+              </figure>
+              <h4 class="product__name">Dashine Samson's Classics</h4>
+              <p class="product__desc">Strong hold, matte finish. Easy-wash, made with organic ingredients.</p>
+            </li>
+            <li class="product" data-stagger>
+              <figure class="product__photo">
+                <img src="public/images/products/product3.png"
+                     alt="Dashine Samson's Classics pomade" loading="lazy" decoding="async">
+              </figure>
+              <h4 class="product__name">Dashine Samson's Classics</h4>
+              <p class="product__desc">Strong hold, matte finish. Easy-wash, made with organic ingredients.</p>
+            </li>
+          </ul>
+          <p class="products-note">Ask your barber about our products.</p>
+        </div>
+
+        <aside class="notice" data-reveal aria-label="Appointment and walk-in policy">
+          <p class="notice__text">
+            Appointments require an additional ₱50 booking fee. Message our Facebook page to book.
+            Walk-ins are welcome.
+          </p>
+          <a href="https://www.facebook.com/share/1G1P8pDjtZ/?mibextid=wwXIfr"
+             class="btn btn--light" target="_blank" rel="noopener noreferrer">Message us on Facebook</a>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===================== BARBERS (hidden hangga't walang data) ===================== -->
+    <section class="section section--light barbers" id="barbers" aria-labelledby="barbers-title"
+             data-section="barbers" hidden>
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">The team</p>
+          <h2 class="section-title" id="barbers-title" data-reveal>Meet our barbers</h2>
+        </div>
+        <!-- Nilalagyan ng main.js galing sa GETFADES_DATA.barbers -->
+        <div class="barbers__grid" id="barbers-grid"></div>
+
+        <!-- Achievements: certificates at competitions -->
+        <div class="achievements">
+          <p class="eyebrow">Certificates &amp; competitions</p>
+          <h3 class="achievements__title" data-reveal>Our achievements</h3>
+          <div class="achievements__grid" data-reveal>
+            <figure class="achievements__item">
+              <img src="public/images/barbers/achievment.png"
+                   alt="GET FADES barbers with their competition certificate" loading="lazy" decoding="async">
+            </figure>
+            <figure class="achievements__item">
+              <img src="public/images/barbers/achievment2.png"
+                   alt="GET FADES barbers with their achievement" loading="lazy" decoding="async">
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== GALLERY (photo marquee + video marquee) ===================== -->
+    <section class="section section--dark gallery" id="gallery" aria-labelledby="gallery-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Gallery</p>
+          <h2 class="section-title" id="gallery-title" data-reveal>Fresh from the chair</h2>
+          <p class="section-lead" data-reveal>Results from our clients.</p>
+        </div>
+        <!-- Hindi ginagamit, iniwan para hindi magreklamo ang main.js -->
+        <div class="gallery__grid" id="gallery-grid" hidden></div>
+      </div>
+
+      <!-- Photo marquee: auto-scroll, pero pwedeng i-drag o i-swipe -->
+      <div class="gallery-marquee" id="gallery-marquee">
+        <div class="gallery-marquee__track">
+          <div class="gallery-marquee__group">
+            <div class="gallery-marquee__item"><img src="public/images/gallery/pic1.png" alt="Haircut result by GET FADES" loading="lazy" decoding="async"></div>
+            <div class="gallery-marquee__item"><img src="public/images/gallery/pic2.png" alt="Haircut result by GET FADES" loading="lazy" decoding="async"></div>
+            <div class="gallery-marquee__item"><img src="public/images/gallery/pic3.png" alt="Haircut result by GET FADES" loading="lazy" decoding="async"></div>
+            <div class="gallery-marquee__item"><img src="public/images/gallery/pic4.png" alt="Haircut result by GET FADES" loading="lazy" decoding="async"></div>
+            <div class="gallery-marquee__item"><img src="public/images/gallery/pic5.png" alt="Haircut result by GET FADES" loading="lazy" decoding="async"></div>
+            <div class="gallery-marquee__item"><img src="public/images/gallery/pic6.png" alt="Haircut result by GET FADES" loading="lazy" decoding="async"></div>
+            <div class="gallery-marquee__item"><img src="public/images/gallery/pic7.png" alt="Haircut result by GET FADES" loading="lazy" decoding="async"></div>
+            <div class="gallery-marquee__item"><img src="public/images/gallery/pic8.png" alt="Haircut result by GET FADES" loading="lazy" decoding="async"></div>
+            <div class="gallery-marquee__item"><img src="public/images/gallery/pic9.png" alt="Haircut result by GET FADES" loading="lazy" decoding="async"></div>
+            <div class="gallery-marquee__item"><img src="public/images/gallery/pic10.png" alt="Haircut result by GET FADES" loading="lazy" decoding="async"></div>
+            <div class="gallery-marquee__item"><img src="public/images/gallery/pic11.png" alt="Haircut result by GET FADES" loading="lazy" decoding="async"></div>
+            <div class="gallery-marquee__item"><img src="public/images/gallery/pic12.png" alt="Haircut result by GET FADES" loading="lazy" decoding="async"></div>
+            <div class="gallery-marquee__item"><img src="public/images/gallery/pic13.png" alt="Haircut result by GET FADES" loading="lazy" decoding="async"></div>
+            <div class="gallery-marquee__item"><img src="public/images/gallery/pic14.png" alt="Haircut result by GET FADES" loading="lazy" decoding="async"></div>
+            <div class="gallery-marquee__item"><img src="public/images/gallery/pic15.png" alt="Haircut result by GET FADES" loading="lazy" decoding="async"></div>
+            <div class="gallery-marquee__item"><img src="public/images/gallery/pic16.png" alt="Haircut result by GET FADES" loading="lazy" decoding="async"></div>
+            <div class="gallery-marquee__item"><img src="public/images/gallery/pic17.png" alt="Haircut result by GET FADES" loading="lazy" decoding="async"></div>
+            <div class="gallery-marquee__item"><img src="public/images/gallery/pic18.png" alt="Haircut result by GET FADES" loading="lazy" decoding="async"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video marquee: auto-scroll lang, walang drag -->
+      <div class="video-marquee" id="video-marquee" aria-label="Haircut videos">
+        <div class="video-marquee__track">
+          <div class="video-marquee__group">
+            <div class="video-marquee__item"><video src="public/videos/video1.mp4" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video></div>
+            <div class="video-marquee__item"><video src="public/videos/video2.mp4" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video></div>
+            <div class="video-marquee__item"><video src="public/videos/video3.mp4" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video></div>
+            <div class="video-marquee__item"><video src="public/videos/video4.mp4" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video></div>
+            <div class="video-marquee__item"><video src="public/videos/video5.mp4" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video></div>
+            <div class="video-marquee__item"><video src="public/videos/video6.mp4" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video></div>
+            <div class="video-marquee__item"><video src="public/videos/video7.mp4" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video></div>
+            <div class="video-marquee__item"><video src="public/videos/video8.mp4" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video></div>
+            <div class="video-marquee__item"><video src="public/videos/video9.mp4" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video></div>
+            <div class="video-marquee__item"><video src="public/videos/video10.mp4" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== AMENITIES ===================== -->
+    <section class="section section--light amenities" id="amenities" aria-labelledby="amenities-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">The shop</p>
+          <h2 class="section-title" id="amenities-title" data-reveal>Sit back. Stay comfortable.</h2>
+        </div>
+
+        <div class="amenities__slider" role="group" aria-roledescription="carousel" aria-label="Shop photos">
+          <div class="amenities__photos" id="amenities-track" tabindex="0">
+            <figure class="amenities__photo">
+              <img src="public/images/shop/indoorshop1.png"
+                   alt="Inside the GET FADES barbershop" loading="lazy" decoding="async">
+            </figure>
+            <figure class="amenities__photo">
+              <img src="public/images/shop/indoorshop2.png"
+                   alt="GET FADES barbershop interior" loading="lazy" decoding="async">
+            </figure>
+            <figure class="amenities__photo">
+              <img src="public/images/shop/shop1.png"
+                   alt="GET FADES barbershop" loading="lazy" decoding="async">
+            </figure>
+          </div>
+          <div class="amenities__controls">
+            <p class="amenities__count" aria-live="polite">
+              <span id="amenities-current">01</span> / <span id="amenities-total">03</span>
+            </p>
+            <div class="amenities__arrows">
+              <button class="amenities__arrow" id="amenities-prev" type="button" aria-label="Previous photo">&#8249;</button>
+              <button class="amenities__arrow" id="amenities-next" type="button" aria-label="Next photo">&#8250;</button>
+            </div>
+          </div>
+        </div>
+        <ul class="amenities__list">
+          <li class="amenity" data-stagger>
+            <svg class="amenity__icon" viewBox="0 0 24 24" width="40" height="40" fill="none"
+                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 2v20M4.9 6l14.2 12M19.1 6L4.9 18M9 3.5l3 2.5 3-2.5M9 20.5l3-2.5 3 2.5M2.5 9.5L6 10l-.5-3.5M18.5 17.5L18 14l3.5.5M21.5 9.5L18 10l.5-3.5M5.5 17.5L6 14l-3.5.5"/>
+            </svg>
+            <span class="amenity__label">Air-conditioned shop</span>
+          </li>
+          <li class="amenity" data-stagger>
+            <svg class="amenity__icon" viewBox="0 0 24 24" width="40" height="40" fill="none"
+                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M2 8.8a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16.2a5 5 0 0 1 7 0"/>
+              <circle cx="12" cy="19.5" r="1" fill="currentColor"/>
+            </svg>
+            <span class="amenity__label">Wi-Fi</span>
+          </li>
+          <li class="amenity" data-stagger>
+            <svg class="amenity__icon" viewBox="0 0 24 24" width="40" height="40" fill="none"
+                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="4" width="20" height="13" rx="1"/>
+              <path d="M8 21h8M12 17v4"/>
+            </svg>
+            <span class="amenity__label">Smart TV</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== REVIEWS ===================== -->
+    <section class="section section--dark reviews" id="reviews" aria-labelledby="reviews-title">
+      <div class="container reviews__inner">
+        <div>
+          <p class="eyebrow">Reviews</p>
+          <h2 class="section-title" id="reviews-title" data-reveal>What customers say</h2>
+        </div>
+        <div class="reviews__summary" data-reveal>
+          <p class="reviews__rating"><span class="reviews__score">4.3</span> / 5</p>
+          <p class="reviews__meta">Google Maps rating summary · 6 reviews</p>
+          <a href="https://maps.app.goo.gl/tSoMAwWoEo4CYmX49?g_st=ic"
+             class="btn btn--outline" target="_blank" rel="noopener noreferrer">Read reviews on Google Maps</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== HOURS & LOCATION ===================== -->
+    <section class="section section--light contact" id="contact" aria-labelledby="contact-title">
+      <div class="container contact__grid">
+        <div class="contact__intro">
+          <p class="eyebrow">Hours &amp; location</p>
+          <h2 class="section-title" id="contact-title" data-reveal>Your next fresh cut starts here.</h2>
+          <div class="contact__address">
+            <p class="contact__label">Address</p>
+            <address>10245 Centennial 2A St, Pasig, Metro Manila</address>
+          </div>
+
+          <a href="https://maps.app.goo.gl/tSoMAwWoEo4CYmX49?g_st=ic"
+             class="btn btn--dark" target="_blank" rel="noopener noreferrer">Get Directions</a>
+
+          <div class="contact__phones">
+            <p class="contact__label">Call or text</p>
+            <a href="tel:+639776039106" class="contact__phone">0977 603 9106</a>
+            <a href="tel:+639274103417" class="contact__phone">0927 410 3417</a>
+          </div>
+        </div>
+
+        <div class="contact__hours">
+          <h3 class="contact__label">Business hours</h3>
+          <ul class="hours-list">
+            <li class="hours-row"><span>Monday</span><span>8:00 AM – 9:00 PM</span></li>
+            <li class="hours-row"><span>Tuesday</span><span>8:00 AM – 9:00 PM</span></li>
+            <li class="hours-row"><span>Wednesday</span><span>8:00 AM – 9:00 PM</span></li>
+            <li class="hours-row"><span>Thursday</span><span>8:00 AM – 9:00 PM</span></li>
+            <li class="hours-row"><span>Friday</span><span>10:00 AM – 9:00 PM</span></li>
+            <li class="hours-row"><span>Saturday</span><span>8:00 AM – 9:00 PM</span></li>
+            <li class="hours-row"><span>Sunday</span><span>8:00 AM – 9:00 PM</span></li>
+          </ul>
+          <p class="contact__note">
+            Please check our official Facebook page for schedule changes and announcements.
+          </p>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="contact__map">
+          <iframe
+            src="https://www.google.com/maps?q=Get+Fades,+10245+Centennial+2A+St,+Pasig,+Metro+Manila&output=embed"
+            title="Map showing the GET FADES location"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== BOOKING CTA ===================== -->
+    <section class="section section--dark booking" id="booking" aria-labelledby="booking-title">
+      <div class="container booking__inner">
+        <h2 class="section-title booking__title" id="booking-title" data-reveal>Book your chair.</h2>
+
+        <div class="booking__body">
+          <ol class="booking__steps">
+            <li>Message the GET FADES Facebook page.</li>
+            <li>Tell us the service you want and your preferred time.</li>
+            <li>Appointments include a ₱50 booking fee on top of the service price.</li>
+          </ol>
+
+          <p class="booking__examples">
+            Men's Haircut with appointment: ₱250 total.<br>
+            Premium Haircut with appointment: ₱300 total.
+          </p>
+          <p class="booking__walkin">Walk-ins are welcome. No booking needed.</p>
+
+          <div class="booking__actions">
+            <a href="https://www.facebook.com/share/1G1P8pDjtZ/?mibextid=wwXIfr"
+               class="btn btn--light" target="_blank" rel="noopener noreferrer">Message us on Facebook</a>
+            <a href="https://www.instagram.com/get.fades?xtok=d3JtN2FmM2tkcGE0"
+               class="btn btn--outline" target="_blank" rel="noopener noreferrer">Follow on Instagram</a>
+          </div>
+        </div>
+      </div>
+    </section>
+        <!-- ===================== FRANCHISE ===================== -->
+    <section class="section section--dark franchise" id="franchise" aria-labelledby="franchise-title">
+      <div class="container fr-head">
+        <p class="eyebrow">Franchise</p>
+        <h2 class="sr-only" id="franchise-title" data-franchise="title">Coming soon.</h2>
+      </div>
+
+      <div class="fr-stack" id="fr-stack" aria-hidden="true">
+        <div class="fr-row" style="--i:0" data-dir="-1" data-speed="70">
+          <div class="fr-track"><div class="fr-group"><span class="fr-word">Coming soon</span></div></div>
+        </div>
+        <div class="fr-row fr-row--outline" style="--i:1" data-dir="1" data-speed="90">
+          <div class="fr-track"><div class="fr-group"><span class="fr-word">Coming soon</span></div></div>
+        </div>
+        <div class="fr-row fr-row--dim" style="--i:2" data-dir="-1" data-speed="55">
+          <div class="fr-track"><div class="fr-group"><span class="fr-word">Coming soon</span></div></div>
+        </div>
+      </div>
+
+      <div class="container fr-foot">
+        <div class="fr-foot__copy">
+          <span class="franchise__badge" data-franchise="badge">Coming soon</span>
+          <p class="franchise__text" data-franchise="text">
+            GET FADES is getting ready to open for franchising. Message our Facebook page to be among the first to know.
+          </p>
+        </div>
+      <a href="https://www.facebook.com/share/1G1P8pDjtZ/?mibextid=wwXIfr"
+   class="btn btn--light" target="_blank" rel="noopener noreferrer"
+   data-franchise="button" hidden>Message us on Facebook</a>
+      </div>
+    </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <p class="footer__logo"><img src="public/images/shop/logo.png" alt="GET FADES" class="footer__logo-img"></p>
+        <p class="footer__tag">Your cut. Your confidence.</p>
+      </div>
+
+      <nav class="footer__col" aria-label="Footer navigation">
+        <h2 class="footer__heading">Explore</h2>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Hours &amp; Location</a>
+        <a href="#booking">Book</a>
+                <a href="#franchise">Franchise</a>
+      </nav>
+
+      <div class="footer__col">
+        <h2 class="footer__heading">Contact</h2>
+        <a href="tel:+639776039106">0977 603 9106</a>
+        <a href="tel:+639274103417">0927 410 3417</a>
+        <a href="https://maps.app.goo.gl/tSoMAwWoEo4CYmX49?g_st=ic" target="_blank" rel="noopener noreferrer">Directions</a>
+      </div>
+
+      <div class="footer__col">
+        <h2 class="footer__heading">Follow</h2>
+        <a href="https://www.facebook.com/share/1G1P8pDjtZ/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a href="https://www.instagram.com/get.fades?xtok=d3JtN2FmM2tkcGE0" target="_blank" rel="noopener noreferrer">Instagram</a>
+      </div>
+
+      <div class="footer__col">
+        <h2 class="footer__heading">Hours</h2>
+        <p>Mon–Thu, Sat–Sun<br>8:00 AM – 9:00 PM</p>
+        <p>Friday<br>10:00 AM – 9:00 PM</p>
+      </div>
+    </div>
+
+    <div class="container footer__bottom">
+      <p>&copy; <span id="year">2026</span> GET FADES. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ===================== LIGHTBOX (para sa gallery) ===================== -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Haircut gallery viewer" hidden>
+    <button class="lightbox__btn lightbox__close" id="lightbox-close" type="button" aria-label="Close">&times;</button>
+    <button class="lightbox__btn lightbox__prev" id="lightbox-prev" type="button" aria-label="Previous">&#8249;</button>
+    <div class="lightbox__stage" id="lightbox-stage"></div>
+    <button class="lightbox__btn lightbox__next" id="lightbox-next" type="button" aria-label="Next">&#8250;</button>
+  </div>
+
+  <!-- ===================== SCRIPTS ===================== -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="js/data.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/stories.js" defer></script>
+  <script src="js/gallery-viewer.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+  <script src="js/welcome.js" defer></script>
+  <script src="js/animations.js" defer></script>
+    <script src="js/franchise.js" defer></script>
+  
+
+  <!-- Nav: transparent sa taas, solid black pag nag-scroll -->
+  <script>
+    (function () {
+      var nav = document.getElementById("nav");
+      if (!nav) return;
+      function update() {
+        nav.classList.toggle("nav--solid", window.scrollY > 40);
+      }
+      update();
+      window.addEventListener("scroll", update, { passive: true });
+    })();
+  </script>
+
+  <!-- Amenities slider: arrows at counter (swipe ay gumagana na sa CSS) -->
+  <script>
+    (function () {
+      var track = document.getElementById("amenities-track");
+      if (!track || !track.children.length) return;
+      var slides = track.children;
+      var cur = document.getElementById("amenities-current");
+      var total = document.getElementById("amenities-total");
+      var prev = document.getElementById("amenities-prev");
+      var next = document.getElementById("amenities-next");
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      function pad(n) { return (n < 10 ? "0" : "") + n; }
+      function step() {
+        return slides[0].offsetWidth + (parseFloat(getComputedStyle(track).columnGap) || 0);
+      }
+      function index() {
+        if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 2) return slides.length - 1;
+        return Math.round(track.scrollLeft / step());
+      }
+      function update() {
+        var i = index();
+        cur.textContent = pad(i + 1);
+        prev.disabled = i <= 0;
+        next.disabled = i >= slides.length - 1;
+      }
+      function go(dir) {
+        var i = Math.max(0, Math.min(slides.length - 1, index() + dir));
+        track.scrollTo({ left: i * step(), behavior: reduce ? "auto" : "smooth" });
+      }
+
+      total.textContent = pad(slides.length);
+      prev.addEventListener("click", function () { go(-1); });
+      next.addEventListener("click", function () { go(1); });
+      track.addEventListener("scroll", function () { window.requestAnimationFrame(update); }, { passive: true });
+      window.addEventListener("resize", update);
+      update();
+    })();
+  </script>
+
+  <!-- Photo marquee: auto-scroll na pwedeng i-drag/i-swipe, tuloy-tuloy ang loop.
+       Bilis: --gallery-speed sa style.css (mas malaki = mas mabagal). -->
+  <script>
+    (function () {
+      var marquee = document.getElementById("gallery-marquee");
+      if (!marquee) return;
+      var track = marquee.querySelector(".gallery-marquee__track");
+      var group = track && track.querySelector(".gallery-marquee__group");
+      if (!group) return;
+
+      // Kopya ng mga photo para walang dulo ang loop
+      var copy = group.cloneNode(true);
+      copy.setAttribute("aria-hidden", "true");
+      Array.prototype.forEach.call(copy.querySelectorAll("img"), function (img) {
+        img.setAttribute("alt", "");
+      });
+      track.appendChild(copy);
+
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var section = marquee.closest(".gallery") || marquee;
+      var seconds = parseFloat(getComputedStyle(section).getPropertyValue("--gallery-speed")) || 150;
+
+      var x = 0;
+      var groupW = 0;
+      var dragging = false;
+      var hovering = false;
+      var visible = true;
+      var startX = 0;
+      var startPos = 0;
+      var lastTime = 0;
+
+      // Vertical scroll ng page ay gumagana pa rin; horizontal ay para sa drag
+      marquee.style.touchAction = "pan-y";
+      marquee.style.cursor = "grab";
+      track.style.willChange = "transform";
+      Array.prototype.forEach.call(track.querySelectorAll("img"), function (img) {
+        img.draggable = false;
+      });
+      marquee.addEventListener("dragstart", function (e) { e.preventDefault(); });
+
+      function measure() {
+        groupW = group.getBoundingClientRect().width;
+      }
+      function wrap() {
+        if (!groupW) return;
+        while (x <= -groupW) x += groupW;
+        while (x > 0) x -= groupW;
+      }
+      function render() {
+        track.style.transform = "translate3d(" + x + "px,0,0)";
+      }
+
+      function tick(now) {
+        var dt = lastTime ? Math.min(now - lastTime, 64) : 0;
+        lastTime = now;
+        if (!reduce && !dragging && !hovering && visible && groupW) {
+          x -= (groupW / seconds) * (dt / 1000);
+          wrap();
+          render();
+        }
+        window.requestAnimationFrame(tick);
+      }
+
+      marquee.addEventListener("pointerdown", function (e) {
+        if (e.pointerType === "mouse" && e.button !== 0) return;
+        dragging = true;
+        startX = e.clientX;
+        startPos = x;
+        marquee.style.cursor = "grabbing";
+        if (marquee.setPointerCapture) marquee.setPointerCapture(e.pointerId);
+      });
+      marquee.addEventListener("pointermove", function (e) {
+        if (!dragging) return;
+        x = startPos + (e.clientX - startX);
+        wrap();
+        render();
+      });
+      function endDrag() {
+        if (!dragging) return;
+        dragging = false;
+        marquee.style.cursor = "grab";
+      }
+      marquee.addEventListener("pointerup", endDrag);
+      marquee.addEventListener("pointercancel", endDrag);
+      marquee.addEventListener("lostpointercapture", endDrag);
+
+      // Naka-pause habang naka-hover (mouse lang)
+      marquee.addEventListener("pointerenter", function (e) {
+        if (e.pointerType === "mouse") hovering = true;
+      });
+      marquee.addEventListener("pointerleave", function (e) {
+        if (e.pointerType === "mouse") hovering = false;
+      });
+
+      // Hindi gumagalaw kapag wala sa screen
+      if ("IntersectionObserver" in window) {
+        new IntersectionObserver(function (entries) {
+          visible = entries[0].isIntersecting;
+        }).observe(marquee);
+      }
+
+      measure();
+      window.addEventListener("resize", function () { measure(); wrap(); render(); });
+      window.addEventListener("load", function () { measure(); });
+      marquee.classList.add("is-slider");
+      window.requestAnimationFrame(tick);
+    })();
+  </script>
+
+  <!-- Video marquee: auto-scroll lang (CSS). Ang script ay kokopya ng mga video
+       para sa loop, at magpe-play lang ng mga video na kita sa screen. -->
+  <script>
+    (function () {
+      var marquee = document.getElementById("video-marquee");
+      if (!marquee) return;
+      var track = marquee.querySelector(".video-marquee__track");
+      var group = track && track.querySelector(".video-marquee__group");
+      if (!group) return;
+
+      var copy = group.cloneNode(true);
+      copy.setAttribute("aria-hidden", "true");
+      track.appendChild(copy);
+
+      var videos = Array.prototype.slice.call(marquee.querySelectorAll("video"));
+      videos.forEach(function (v) {
+        v.muted = true;
+        v.loop = true;
+        v.playsInline = true;
+        v.disablePictureInPicture = true;
+      });
+
+      function play(v) {
+        var p = v.play();
+        if (p && typeof p.catch === "function") p.catch(function () {});
+      }
+
+      if ("IntersectionObserver" in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) play(entry.target);
+            else entry.target.pause();
+          });
+        }, { threshold: 0.25 });
+        videos.forEach(function (v) { io.observe(v); });
+      } else {
+        videos.forEach(play);
+      }
+
+      marquee.classList.add("is-ready");
+    })();
+  </script>
+
+  <!-- Sound toggle: tuloy ang audio kahit mag-scroll palabas ng hero -->
+  <script>
+    (function () {
+      var video = document.getElementById("hero-video");
+      var btn = document.getElementById("hero-sound");
+      if (!video || !btn) return;
+      var label = btn.querySelector(".hero__sound-label");
+
+      function render() {
+        var on = !video.muted;
+        btn.classList.toggle("is-on", on);
+        btn.setAttribute("aria-pressed", String(on));
+        btn.setAttribute("aria-label", on ? "Turn sound off" : "Turn sound on");
+        label.textContent = on ? "Sound on" : "Sound off";
+      }
+
+      function setSound(on) {
+        video.muted = !on;
+        if (on) {
+          video.volume = 1;
+          var p = video.play();
+          if (p && typeof p.catch === "function") p.catch(function () {});
+        }
+        render();
+      }
+
+      // Kung naka-reduce-motion ang user: poster lang, walang video at walang button
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        video.removeAttribute("autoplay");
+        video.pause();
+        btn.hidden = true;
+        return;
+      }
+
+      btn.addEventListener("click", function () { setSound(video.muted); });
+
+      render();
+    })();
+  </script>
+</body>
+</html>
