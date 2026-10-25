@@ -169,12 +169,17 @@
       { id: "tv",     label: "Smart TV",             icon: "tv" }
     ],
 
-    reviews: {
+      reviews: {
       source: "Google Maps",
-      rating: 4.6,
-      count: 6,
+      rating: 4.3,   // palitan ng aktwal na nasa Google
+      count: 6,      // palitan ng aktwal na bilang
       url: "https://maps.app.goo.gl/tSoMAwWoEo4CYmX49?g_st=ic",
-      verifyBeforePublish: true // i-check muna sa Google Maps kung current pa bago i-launch
+      verifyBeforePublish: true,
+      items: [
+        { name: "Justine Landicho", stars: 5, text: "Solid haircut" },
+        { name: "Sevilla, Aron P.", stars: 5, text: "Solid bossing" },
+        { name: "Leo Tapalla", stars: 5, text: "Finest barbers" }
+      ]
     },
 
     marquee: ["Fresh cuts", "Sharp details", "Real confidence", "GET FADES"]

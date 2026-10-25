@@ -1,0 +1,73 @@
+/* ==========================================================
+   GET FADES — reviews.css
+   Review cards sa ilalim ng rating summary.
+   ========================================================== */
+
+.reviews__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2.5vw, 2rem);
+  margin-top: clamp(2.5rem, 6vw, 5rem);
+}
+.reviews__list[hidden] { display: none; }
+
+.review {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.75rem;
+  margin: 0;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  transition: border-color 0.3s ease, transform 0.4s ease;
+}
+@media (hover: hover) {
+  .review:hover { border-color: var(--color-white); transform: translateY(-4px); }
+}
+
+.review__stars {
+  font-size: 1.1rem;
+  letter-spacing: 0.2em;
+  line-height: 1;
+  color: var(--color-white);
+}
+
+.review__text { margin: 0; }
+.review__text p {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.review__by { display: grid; gap: 0.25rem; }
+.review__name {
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.review__src {
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-gray-600);
+}
+
+/* Tablet at mobile: swipeable, may peek ang susunod */
+@media (max-width: 860px) {
+  .reviews__list {
+    display: flex;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .reviews__list::-webkit-scrollbar { display: none; }
+  .review { flex: 0 0 78%; scroll-snap-align: start; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .review { transition: none; }
+}
