@@ -171,7 +171,7 @@
 
     reviews: {
       source: "Google Maps",
-      rating: 4.3,
+      rating: 4.6,
       count: 6,
       url: "https://maps.app.goo.gl/tSoMAwWoEo4CYmX49?g_st=ic",
       verifyBeforePublish: true // i-check muna sa Google Maps kung current pa bago i-launch
