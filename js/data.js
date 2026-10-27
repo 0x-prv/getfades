@@ -169,12 +169,18 @@
       { id: "tv",     label: "Smart TV",             icon: "tv" }
     ],
 
-      reviews: {
+    reviews: {
       source: "Google Maps",
-      rating: 4.3,   // palitan ng aktwal na nasa Google
-      count: 6,      // palitan ng aktwal na bilang
+      rating: 4.8,   // tugma sa Google Maps (Oct 27, 2026)
+      count: 24,     // tugma sa Google Maps (Oct 27, 2026)
       url: "https://maps.app.goo.gl/tSoMAwWoEo4CYmX49?g_st=ic",
-      verifyBeforePublish: true,
+      links: {
+        // Direct sa write-a-review box ng Google (placeid galing sa Maps link ng shop)
+        google: "https://search.google.com/local/writereview?placeid=ChIJQWZhGwDHlzMR4y5dt9B-ZmU",
+        facebook: "https://www.facebook.com/share/1G1P8pDjtZ/?mibextid=wwXIfr"
+      },
+      verifyBeforePublish: false,
+      // Totoong reviews lang. Kopyahin nang eksakto ang pangalan, stars, at text.
       items: [
         { name: "Justine Landicho", stars: 5, text: "Solid haircut" },
         { name: "Sevilla, Aron P.", stars: 5, text: "Solid bossing" },

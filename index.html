@@ -428,7 +428,7 @@
       </div>
     </section>
 
-       <!-- ===================== REVIEWS ===================== -->
+         <!-- ===================== REVIEWS ===================== -->
     <section class="section section--dark reviews" id="reviews" aria-labelledby="reviews-title">
       <div class="container reviews__inner">
         <div>
@@ -436,16 +436,32 @@
           <h2 class="section-title" id="reviews-title" data-reveal>What customers say</h2>
         </div>
         <div class="reviews__summary" data-reveal>
-          <p class="reviews__rating"><span class="reviews__score" data-reviews="rating">4.6</span> / 5</p>
-          <p class="reviews__meta" data-reviews="meta">Google Maps rating summary · 21 reviews</p>
-          <a href="https://maps.app.goo.gl/tSoMAwWoEo4CYmX49?g_st=ic"
-             class="btn btn--outline" target="_blank" rel="noopener noreferrer"
-             data-reviews="link">Read reviews on Google Maps</a>
+          <p class="reviews__rating"><span class="reviews__score" data-reviews="rating">4.8</span> / 5</p>
+          <p class="reviews__meta" data-reviews="meta">Google Maps rating summary · 24 reviews</p>
+          <div class="reviews__actions">
+            <a href="https://maps.app.goo.gl/tSoMAwWoEo4CYmX49?g_st=ic"
+               class="btn btn--light" target="_blank" rel="noopener noreferrer"
+               data-reviews="link">Review us on Google</a>
+            <a href="https://www.facebook.com/share/1G1P8pDjtZ/?mibextid=wwXIfr"
+               class="btn btn--outline" target="_blank" rel="noopener noreferrer"
+               data-reviews="facebook">Review us on Facebook</a>
+          </div>
         </div>
       </div>
 
       <div class="container">
-        <div class="reviews__list" data-reviews="list"></div>
+        <div class="reviews__slider" data-reviews="slider" role="group" aria-roledescription="carousel" aria-label="Customer reviews">
+          <div class="reviews__list" data-reviews="list" tabindex="0"></div>
+          <div class="reviews__controls" data-reviews="controls">
+            <p class="reviews__count" aria-live="polite">
+              <span data-reviews="current">01</span> / <span data-reviews="total">03</span>
+            </p>
+            <div class="reviews__arrows">
+              <button class="reviews__arrow" type="button" data-reviews="prev" aria-label="Previous review">&#8249;</button>
+              <button class="reviews__arrow" type="button" data-reviews="next" aria-label="Next review">&#8250;</button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
     <!-- ===================== HOURS & LOCATION ===================== -->

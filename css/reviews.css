@@ -1,40 +1,66 @@
 /* ==========================================================
-   GET FADES — reviews.css
-   Review cards sa ilalim ng rating summary.
+   GET FADES — reviews.css (v3)
+   Slider ng review cards, arrows, at review buttons.
+   Ang rating summary mismo (.reviews__score, atbp.) ay nasa style.css.
    ========================================================== */
 
-.reviews__list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(1rem, 2.5vw, 2rem);
+.reviews__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.reviews__slider {
   margin-top: clamp(2.5rem, 6vw, 5rem);
 }
-.reviews__list[hidden] { display: none; }
+.reviews__slider[hidden] { display: none; }
 
+/* ---------- Track ---------- */
+.reviews__list {
+  --reviews-gap: clamp(1rem, 2.5vw, 2rem);
+  display: flex;
+  gap: var(--reviews-gap);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.reviews__list::-webkit-scrollbar { display: none; }
+.reviews__list[hidden] { display: none; }
+.reviews__list:focus-visible { outline: 1px solid rgba(255, 255, 255, 0.6); outline-offset: 6px; }
+
+/* ---------- Card ---------- */
 .review {
+  flex: 0 0 calc((100% - (var(--reviews-gap) * 2)) / 3);
+  scroll-snap-align: start;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 1.75rem;
+  min-height: 15rem;
   margin: 0;
   padding: clamp(1.5rem, 3vw, 2.25rem);
   border: 1px solid rgba(255, 255, 255, 0.28);
-  transition: border-color 0.3s ease, transform 0.4s ease;
+  transition: border-color 0.3s ease;
 }
 @media (hover: hover) {
-  .review:hover { border-color: var(--color-white); transform: translateY(-4px); }
+  .review:hover { border-color: var(--color-white, #fff); }
 }
 
 .review__stars {
+  margin: 0;
   font-size: 1.1rem;
   letter-spacing: 0.2em;
   line-height: 1;
-  color: var(--color-white);
+  color: var(--color-white, #fff);
 }
 
 .review__text { margin: 0; }
 .review__text p {
-  font-family: var(--font-display);
+  margin: 0;
+  font-family: var(--font-display, "Anton", sans-serif);
   font-size: clamp(1.75rem, 3vw, 2.5rem);
   line-height: 1.05;
   text-transform: uppercase;
@@ -42,7 +68,7 @@
 
 .review__by { display: grid; gap: 0.25rem; }
 .review__name {
-  font-size: var(--fs-small);
+  font-size: var(--fs-small, 0.875rem);
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -51,23 +77,64 @@
   font-size: 0.75rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-gray-600);
+  color: var(--color-gray-600, #9a9a9a);
 }
 
-/* Tablet at mobile: swipeable, may peek ang susunod */
-@media (max-width: 860px) {
-  .reviews__list {
-    display: flex;
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+/* ---------- Controls (counter + arrows) ---------- */
+.reviews__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.reviews__controls[hidden] { display: none; }
+
+.reviews__count {
+  margin: 0;
+  font-size: var(--fs-small, 0.875rem);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  font-variant-numeric: tabular-nums;
+}
+
+.reviews__arrows { display: flex; gap: 0.5rem; }
+
+.reviews__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  padding: 0 0 0.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: transparent;
+  color: var(--color-white, #fff);
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
+}
+@media (hover: hover) {
+  .reviews__arrow:hover:not(:disabled) {
+    background: var(--color-white, #fff);
+    border-color: var(--color-white, #fff);
+    color: #0a0a0a;
   }
-  .reviews__list::-webkit-scrollbar { display: none; }
-  .review { flex: 0 0 78%; scroll-snap-align: start; }
+}
+.reviews__arrow:focus-visible { outline: 2px solid var(--color-white, #fff); outline-offset: 3px; }
+.reviews__arrow:disabled { opacity: 0.3; cursor: default; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 860px) {
+  .review { flex-basis: calc((100% - var(--reviews-gap)) / 2); }
+}
+@media (max-width: 560px) {
+  .review { flex-basis: 82%; min-height: 13rem; }
+  .reviews__actions .btn { flex: 1 1 100%; justify-content: center; text-align: center; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .review { transition: none; }
+  .review,
+  .reviews__arrow { transition: none; }
 }
